@@ -112,7 +112,7 @@ const getImgUrl = (imageUri) => {
 
   &__title-wrapper {
     font-family: "DM Serif Display", serif;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 400px;
     line-height: 25px;
     display: flex;
@@ -159,14 +159,14 @@ const getImgUrl = (imageUri) => {
     font-weight: 400;
 
     &--discount-price {
-      font-size: 28px;
+      font-size: 1.75rem;
       line-height: 25px;
       margin-right: 10px;
       color: #081f32;
     }
 
     &--original-price {
-      font-size: 20px;
+      font-size: 1.25rem;
       line-height: 25px;
       color: #f8593b;
       text-decoration: line-through;
@@ -180,7 +180,7 @@ const getImgUrl = (imageUri) => {
       background-color: #2ecc71;
       color: #ffffff;
       font-family: "Open Sans", sans-serif;
-      font-size: 14px;
+      font-size: 0.875rem;
       line-height: 25px;
       text-align: center;
       font-weight: 600;
@@ -201,7 +201,7 @@ const getImgUrl = (imageUri) => {
 }
 
 .body-text {
-  font-size: 16px;
+  font-size: 1rem;
   font-family: "Open Sans", sans-serif;
   line-height: 25px;
   margin-top: 25px;

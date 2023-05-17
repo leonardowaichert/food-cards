@@ -77,6 +77,8 @@ const getImgUrl = (imageUri) => {
 </template>
 
 <style scoped lang="scss">
+@use '../../globals/_globals.scss';
+
 .card {
   margin: 20px;
   background-color: #ffffff;
@@ -111,7 +113,7 @@ const getImgUrl = (imageUri) => {
   }
 
   &__title-wrapper {
-    font-family: "DM Serif Display", serif;
+    font-family: globals.$dmSerifDisplay;
     font-size: 1.5rem;
     font-weight: 400px;
     line-height: 25px;
@@ -155,7 +157,7 @@ const getImgUrl = (imageUri) => {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    font-family: "DM Serif Display", serif;
+    font-family: globals.$dmSerifDisplay;
     font-weight: 400;
 
     &--discount-price {
@@ -177,9 +179,9 @@ const getImgUrl = (imageUri) => {
       width: 115px;
       height: 45px;
       border-radius: 4px;
-      background-color: #2ecc71;
+      background-color: globals.$buttonBackgroundColor;
       color: #ffffff;
-      font-family: "Open Sans", sans-serif;
+      font-family: globals.$openSansFont;
       font-size: 0.875rem;
       line-height: 25px;
       text-align: center;
@@ -202,7 +204,7 @@ const getImgUrl = (imageUri) => {
 
 .body-text {
   font-size: 1rem;
-  font-family: "Open Sans", sans-serif;
+  font-family: globals.$openSansFont;
   line-height: 25px;
   margin-top: 25px;
 }

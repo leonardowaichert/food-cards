@@ -1,4 +1,6 @@
 <script setup>
+import { reactive } from "vue";
+
 const props = defineProps({
   imageUri: String,
   width: Number,
@@ -16,12 +18,24 @@ const props = defineProps({
   swimIcon: Boolean,
 });
 
+const state = reactive({
+  isFavorite: false,
+});
+
+const iconsPath = "./src/components/HotelCard/assets/icons";
+const favoriteHotelIcon = `${iconsPath}/filled-heart.svg`;
+const noFavoriteHotelIcon = `${iconsPath}/heart.svg`;
+
 const calcSavedValue = () => {
   return props.originalPrice - props.discountPrice;
 };
 
 const getImgUrl = (imageUri) => {
   return "./src/components/HotelCard/assets/img/" + imageUri;
+};
+
+const setAsFavorite = () => {
+  state.isFavorite = !state.isFavorite;
 };
 </script>
 
@@ -31,8 +45,13 @@ const getImgUrl = (imageUri) => {
     class="hotel-card"
   >
     <div class="hotel-card__image-container">
-      <div class="hotel-card__info-wrapper">
-        <img src="./assets/icons/heart.svg" alt="Favorite icon" />
+      <div class="hotel-card__info-wrapper" @click="setAsFavorite">
+        <img
+          v-if="state.isFavorite"
+          :src="favoriteHotelIcon"
+          alt="Favorite icon"
+        />
+        <img v-else :src="noFavoriteHotelIcon" alt="Favorite icon" />
       </div>
       <img
         :src="getImgUrl(imageUri)"

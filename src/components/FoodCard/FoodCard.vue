@@ -22,64 +22,64 @@ const getImgUrl = (imageUri) => {
 </script>
 
 <template>
-  <div :style="{ width: `${width}px`, height: `${height}px` }" class="card">
-    <div class="card__image-container">
-      <div class="card__info-wrapper">
+  <div :style="{ width: `${width}px`, height: `${height}px` }" class="food-card">
+    <div class="food-card__image-container">
+      <div class="food-card__info-wrapper">
         <img src="./assets/icons/info.svg" alt="Information icon" />
       </div>
-      <img :src="getImgUrl(imageUri)" alt="Food image" class="card__image" />
+      <img :src="getImgUrl(imageUri)" alt="Food image" class="food-card__image" />
     </div>
-    <div class="card__body-container">
-      <div class="card__title-wrapper">
-        <div class="card__title-wrapper--title">{{ title }}</div>
-        <div class="card__title-wrapper__icons-container">
+    <div class="food-card__body-container">
+      <div class="food-card__title-wrapper">
+        <div class="food-card__title-wrapper--title">{{ title }}</div>
+        <div class="food-card__title-wrapper__icons-container">
           <div
             v-if="leafIcon"
-            class="card__title-wrapper__icons-container--leaf icon-default"
+            class="food-card__title-wrapper__icons-container--leaf icon-default"
           >
             <img src="./assets/icons/leaf.svg" alt="Leaf indicator" />
           </div>
           <div
             v-if="fireIcon"
-            class="card__title-wrapper__icons-container--fire icon-default"
+            class="food-card__title-wrapper__icons-container--fire icon-default"
           >
             <img src="./assets/icons/fire.svg" alt="Fire indicator" />
           </div>
           <div
             v-if="wheatIcon"
-            class="card__title-wrapper__icons-container--wheat icon-default"
+            class="food-card__title-wrapper__icons-container--wheat icon-default"
           >
             <img src="./assets/icons/wheat.svg" alt="Wheat indicator" />
           </div>
         </div>
       </div>
-      <div class="card__description-wrapper body-text">
+      <div class="food-card__description-wrapper body-text">
         <span>{{ description }}</span>
       </div>
-      <div class="card__infos-wrapper body-text">
+      <div class="food-card__infos-wrapper body-text">
         <span>{{ calories }} Cal</span>
         <span>P/F/C: {{ pfc }}</span>
         <span>{{ temperature }} ºC</span>
       </div>
-      <div class="card__purchase-wrapper">
+      <div class="food-card__purchase-wrapper">
         <div>
-          <span class="card__purchase-wrapper--discount-price"
+          <span class="food-card__purchase-wrapper--discount-price"
             >${{ parseFloat(priceWithDiscount).toFixed(2) }}</span
           >
-          <span class="card__purchase-wrapper--original-price"
+          <span class="food-card__purchase-wrapper--original-price"
             >${{ parseFloat(originalPrice).toFixed(2) }}</span
           >
         </div>
-        <button class="card__purchase-wrapper--button">ORDER</button>
+        <button class="food-card__purchase-wrapper--button">ORDER</button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@use '../../globals/_globals.scss';
+@use "../../globals/_globals.scss";
 
-.card {
+.food-card {
   margin: 20px;
   background-color: #ffffff;
   border-radius: 16px;

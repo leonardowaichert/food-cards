@@ -227,10 +227,6 @@ const getImgUrl = (imageUri) => {
 
 @media (max-width: 420px) {
   .food-card {
-		&__body-container {
-			// padding-top: 8px;
-		}
-
     &__title-wrapper {
       flex-direction: column;
 

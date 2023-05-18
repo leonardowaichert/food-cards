@@ -91,7 +91,7 @@ const setAsFavorite = () => {
               {{ ranking }}
             </div>
           </div>
-          <div class="flex-row mt-20">
+          <div class="hotel-card__left-infos-wrapper--secondary">
             <div class="hotel-card--label">{{ stayDate }}</div>
             <div class="hotel-card--label">{{ availableRooms }}</div>
           </div>
@@ -130,7 +130,7 @@ const setAsFavorite = () => {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: flex;
   flex-direction: column;
-  min-width: 320px;
+  min-width: 430px;
 
   &--label {
     display: flex;
@@ -219,6 +219,12 @@ const setAsFavorite = () => {
     flex-direction: column;
     justify-content: center;
 
+    &--secondary {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 20px;
+    }
     &--ranking {
       text-transform: uppercase;
       color: #ffffff;
@@ -340,5 +346,52 @@ const setAsFavorite = () => {
   font-family: globals.$openSansFont;
   line-height: 25px;
   margin-top: 25px;
+}
+
+@media (max-width: 570px) {
+  .hotel-card {
+    width: 100%;
+    min-width: 100%;
+
+    &__image {
+      height: 100%;
+    }
+    &__title-wrapper {
+      flex-direction: column;
+      &__icons-container {
+        margin-top: 5px;
+      }
+    }
+
+    &__infos-wrapper {
+      flex-direction: column;
+      align-items: start;
+      margin-top: 8px;
+    }
+
+    &__left-infos-wrapper {
+      &--secondary {
+        margin-top: 10px;
+      }
+    }
+
+    &__right-infos-wrapper {
+      width: 100%;
+      margin-top: 5px;
+
+      &--discount-price {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .body-text {
+    margin-top: 5px;
+  }
+
+  .icon-default {
+    margin-right: 10px;
+    margin-left: 0;
+  }
 }
 </style>

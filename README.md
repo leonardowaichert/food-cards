@@ -1,7 +1,8 @@
-# Vue 3 + Vite
+# Food and Hotel cards
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+To run the project, follow these steps:
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Navigate to the project folder path
+- Run the **npm install** command and wait for the npm packages to finish installing
+- After installation, run **npm run dev** command
+- After finishing the execution of the server, in the browser, access the url **http://localhost:5173**

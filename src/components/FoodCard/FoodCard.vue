@@ -22,62 +22,64 @@ const getImgUrl = (imageUri) => {
 </script>
 
 <template>
-  <div :style="{ width: `${width}px`, height: `${height}px` }" class="card">
-    <div class="card__image-container">
-      <div class="card__info-wrapper">
+  <div :style="{ width: `${width}px`, height: `${height}px` }" class="food-card">
+    <div class="food-card__image-container">
+      <div class="food-card__info-wrapper">
         <img src="./assets/icons/info.svg" alt="Information icon" />
       </div>
-      <img :src="getImgUrl(imageUri)" alt="Food image" class="card__image" />
+      <img :src="getImgUrl(imageUri)" alt="Food image" class="food-card__image" />
     </div>
-    <div class="card__body-container">
-      <div class="card__title-wrapper">
-        <div class="card__title-wrapper--title">{{ title }}</div>
-        <div class="card__title-wrapper__icons-container">
+    <div class="food-card__body-container">
+      <div class="food-card__title-wrapper">
+        <div class="food-card__title-wrapper--title">{{ title }}</div>
+        <div class="food-card__title-wrapper__icons-container">
           <div
             v-if="leafIcon"
-            class="card__title-wrapper__icons-container--leaf icon-default"
+            class="food-card__title-wrapper__icons-container--leaf icon-default"
           >
             <img src="./assets/icons/leaf.svg" alt="Leaf indicator" />
           </div>
           <div
             v-if="fireIcon"
-            class="card__title-wrapper__icons-container--fire icon-default"
+            class="food-card__title-wrapper__icons-container--fire icon-default"
           >
             <img src="./assets/icons/fire.svg" alt="Fire indicator" />
           </div>
           <div
             v-if="wheatIcon"
-            class="card__title-wrapper__icons-container--wheat icon-default"
+            class="food-card__title-wrapper__icons-container--wheat icon-default"
           >
             <img src="./assets/icons/wheat.svg" alt="Wheat indicator" />
           </div>
         </div>
       </div>
-      <div class="card__description-wrapper body-text">
+      <div class="food-card__description-wrapper body-text">
         <span>{{ description }}</span>
       </div>
-      <div class="card__infos-wrapper body-text">
+      <div class="food-card__infos-wrapper body-text">
         <span>{{ calories }} Cal</span>
         <span>P/F/C: {{ pfc }}</span>
         <span>{{ temperature }} ºC</span>
       </div>
-      <div class="card__purchase-wrapper">
+      <div class="food-card__purchase-wrapper">
         <div>
-          <span class="card__purchase-wrapper--discount-price"
+          <span class="food-card__purchase-wrapper--discount-price"
             >${{ parseFloat(priceWithDiscount).toFixed(2) }}</span
           >
-          <span class="card__purchase-wrapper--original-price"
+          <span class="food-card__purchase-wrapper--original-price"
             >${{ parseFloat(originalPrice).toFixed(2) }}</span
           >
         </div>
-        <button class="card__purchase-wrapper--button">ORDER</button>
+        <button class="food-card__purchase-wrapper--button">ORDER</button>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-.card {
+@use "../../globals/_globals.scss";
+
+.food-card {
   margin: 20px;
   background-color: #ffffff;
   border-radius: 16px;
@@ -111,8 +113,8 @@ const getImgUrl = (imageUri) => {
   }
 
   &__title-wrapper {
-    font-family: "DM Serif Display", serif;
-    font-size: 24px;
+    font-family: globals.$dmSerifDisplay;
+    font-size: 1.5rem;
     font-weight: 400px;
     line-height: 25px;
     display: flex;
@@ -155,18 +157,18 @@ const getImgUrl = (imageUri) => {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    font-family: "DM Serif Display", serif;
+    font-family: globals.$dmSerifDisplay;
     font-weight: 400;
 
     &--discount-price {
-      font-size: 28px;
+      font-size: 1.75rem;
       line-height: 25px;
       margin-right: 10px;
       color: #081f32;
     }
 
     &--original-price {
-      font-size: 20px;
+      font-size: 1.25rem;
       line-height: 25px;
       color: #f8593b;
       text-decoration: line-through;
@@ -177,10 +179,10 @@ const getImgUrl = (imageUri) => {
       width: 115px;
       height: 45px;
       border-radius: 4px;
-      background-color: #2ecc71;
+      background-color: globals.$buttonBackgroundColor;
       color: #ffffff;
-      font-family: "Open Sans", sans-serif;
-      font-size: 14px;
+      font-family: globals.$openSansFont;
+      font-size: 0.875rem;
       line-height: 25px;
       text-align: center;
       font-weight: 600;
@@ -201,8 +203,8 @@ const getImgUrl = (imageUri) => {
 }
 
 .body-text {
-  font-size: 16px;
-  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-family: globals.$openSansFont;
   line-height: 25px;
   margin-top: 25px;
 }

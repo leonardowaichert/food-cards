@@ -95,5 +95,13 @@ import HotelCard from "./HotelCard/HotelCard.vue";
 .hotel-cards {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+}
+
+@media (max-width: 1080px) {
+  .food-cards,
+  .hotel-cards {
+    flex-wrap: wrap;
+  }
 }
 </style>

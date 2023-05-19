@@ -86,7 +86,7 @@ const closeBookingArea = () => {
     :style="{ width: `${width}px`, height: `${height}px` }"
     class="hotel-card"
   >
-    <div v-show="!state.bookingRoom">
+    <div v-if="!state.bookingRoom" class="display-flex-column">
       <div class="hotel-card__image-container">
         <div class="hotel-card__info-wrapper" @click="setAsFavorite">
           <img
@@ -112,13 +112,13 @@ const closeBookingArea = () => {
         <div class="hotel-card__title-wrapper">
           <div class="hotel-card__title-wrapper--title">{{ title }}</div>
           <div class="hotel-card__title-wrapper__icons-container">
-            <div v-if="swimIcon" class="icon-default">
+            <div v-if="swimIcon" class="icon-default" title="Pool">
               <img src="./assets/icons/swim.svg" alt="Swim indicator" />
             </div>
-            <div v-if="wifiIcon" class="icon-default">
+            <div v-if="wifiIcon" class="icon-default" title="Wifi">
               <img src="./assets/icons/wifi.svg" alt="Wifi indicator" />
             </div>
-            <div v-if="foodIcon" class="icon-default">
+            <div v-if="foodIcon" class="icon-default" title="Food">
               <img src="./assets/icons/food.svg" alt="Food indicator" />
             </div>
           </div>
@@ -171,7 +171,7 @@ const closeBookingArea = () => {
         </div>
       </div>
     </div>
-    <div v-show="state.bookingRoom">
+    <div v-if="state.bookingRoom" class="display-flex-column">
       <div class="hotel-card__select-room-container">
         <div class="hotel-card__select-room-container--close-icon">
           <img
@@ -451,6 +451,12 @@ const closeBookingArea = () => {
   font-family: globals.$openSansFont;
   line-height: 25px;
   margin-top: 25px;
+}
+
+.display-flex-column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 @media (max-width: 570px) {

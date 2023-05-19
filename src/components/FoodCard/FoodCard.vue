@@ -1,4 +1,6 @@
 <script setup>
+import { reactive } from "vue";
+
 defineProps({
   imageUri: {
     type: String,
@@ -54,8 +56,20 @@ defineProps({
   },
 });
 
+const state = reactive({
+  orderFood: false,
+});
+
 const getImgUrl = (imageUri) => {
   return "./src/components/FoodCard/assets/img/" + imageUri;
+};
+
+const orderFood = () => {
+  state.orderFood = true;
+};
+
+const closeOrderFood = () => {
+  state.orderFood = false;
 };
 </script>
 
@@ -64,58 +78,85 @@ const getImgUrl = (imageUri) => {
     :style="{ width: `${width}px`, height: `${height}px` }"
     class="food-card"
   >
-    <div class="food-card__image-container">
-      <div class="food-card__info-wrapper">
-        <img src="./assets/icons/info.svg" alt="Information icon" />
+    <div v-show="!state.orderFood" class="display-flex-column">
+      <div class="food-card__image-container">
+        <div class="food-card__info-wrapper" title="Food infos">
+          <img src="./assets/icons/info.svg" alt="Information icon" />
+        </div>
+        <img
+          :src="getImgUrl(imageUri)"
+          alt="Food image"
+          class="food-card__image"
+        />
       </div>
-      <img
-        :src="getImgUrl(imageUri)"
-        alt="Food image"
-        class="food-card__image"
-      />
+      <div class="food-card__body-container">
+        <div class="food-card__title-wrapper">
+          <div class="food-card__title-wrapper--title">{{ title }}</div>
+          <div class="food-card__title-wrapper__icons-container">
+            <div
+              v-if="leafIcon"
+              class="food-card__title-wrapper__icons-container--leaf icon-default"
+              title="Organic"
+            >
+              <img src="./assets/icons/leaf.svg" alt="Leaf indicator" />
+            </div>
+            <div
+              v-if="fireIcon"
+              class="food-card__title-wrapper__icons-container--fire icon-default"
+              title="Hot food"
+            >
+              <img src="./assets/icons/fire.svg" alt="Fire indicator" />
+            </div>
+            <div
+              v-if="wheatIcon"
+              class="food-card__title-wrapper__icons-container--wheat icon-default"
+              title="Contains gluten"
+            >
+              <img src="./assets/icons/wheat.svg" alt="Wheat indicator" />
+            </div>
+          </div>
+        </div>
+        <div class="food-card__description-wrapper body-text">
+          <span>{{ description }}</span>
+        </div>
+        <div class="food-card__infos-wrapper body-text">
+          <span>{{ calories }} Cal</span>
+          <span>P/F/C: {{ pfc }}</span>
+          <span>{{ temperature }} ºC</span>
+        </div>
+        <div class="food-card__purchase-wrapper">
+          <div>
+            <span class="food-card__purchase-wrapper--discount-price"
+              >${{ parseFloat(priceWithDiscount).toFixed(2) }}</span
+            >
+            <span class="food-card__purchase-wrapper--original-price"
+              >${{ parseFloat(originalPrice).toFixed(2) }}</span
+            >
+          </div>
+          <button
+            class="food-card__purchase-wrapper--button"
+            @click="orderFood"
+          >
+            ORDER
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="food-card__body-container">
-      <div class="food-card__title-wrapper">
-        <div class="food-card__title-wrapper--title">{{ title }}</div>
-        <div class="food-card__title-wrapper__icons-container">
-          <div
-            v-if="leafIcon"
-            class="food-card__title-wrapper__icons-container--leaf icon-default"
-          >
-            <img src="./assets/icons/leaf.svg" alt="Leaf indicator" />
-          </div>
-          <div
-            v-if="fireIcon"
-            class="food-card__title-wrapper__icons-container--fire icon-default"
-          >
-            <img src="./assets/icons/fire.svg" alt="Fire indicator" />
-          </div>
-          <div
-            v-if="wheatIcon"
-            class="food-card__title-wrapper__icons-container--wheat icon-default"
-          >
-            <img src="./assets/icons/wheat.svg" alt="Wheat indicator" />
-          </div>
+    <div v-if="state.orderFood" class="display-flex-column">
+      <div class="food-card__order-food-container">
+        <div class="food-card__order-food-container--close-icon">
+          <img
+            src="../../assets/close-icon.svg"
+            alt="Close icon"
+            @click="closeOrderFood"
+          />
         </div>
-      </div>
-      <div class="food-card__description-wrapper body-text">
-        <span>{{ description }}</span>
-      </div>
-      <div class="food-card__infos-wrapper body-text">
-        <span>{{ calories }} Cal</span>
-        <span>P/F/C: {{ pfc }}</span>
-        <span>{{ temperature }} ºC</span>
-      </div>
-      <div class="food-card__purchase-wrapper">
-        <div>
-          <span class="food-card__purchase-wrapper--discount-price"
-            >${{ parseFloat(priceWithDiscount).toFixed(2) }}</span
-          >
-          <span class="food-card__purchase-wrapper--original-price"
-            >${{ parseFloat(originalPrice).toFixed(2) }}</span
+        <div class="food-card__order-food-container--generic-text">
+          <span
+            >Any generic information about order food of
+            <strong>{{ title }}</strong></span
           >
         </div>
-        <button class="food-card__purchase-wrapper--button">ORDER</button>
       </div>
     </div>
   </div>
@@ -151,6 +192,11 @@ const getImgUrl = (imageUri) => {
     top: 15px;
     right: 20px;
     cursor: pointer;
+    transition: 0.2s;
+  }
+
+  &__info-wrapper:hover {
+    transform: scale(1.1);
   }
 
   &__image {
@@ -250,6 +296,26 @@ const getImgUrl = (imageUri) => {
       background-color: globals.$buttonHoverBackgroundColor;
     }
   }
+
+  &__order-food-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    &--close-icon {
+      text-align: right;
+      cursor: pointer;
+    }
+
+    &--generic-text {
+      display: flex;
+      flex-grow: 1;
+      font-family: globals.$openSansFont;
+      font-size: 1.85rem;
+      text-align: center;
+      margin-top: 100px;
+    }
+  }
 }
 
 .icon-default {
@@ -267,6 +333,12 @@ const getImgUrl = (imageUri) => {
   font-size: 1rem;
   line-height: 25px;
   margin-top: 25px;
+}
+
+.display-flex-column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 @media (max-width: 420px) {

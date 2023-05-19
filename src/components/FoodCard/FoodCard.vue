@@ -1,19 +1,57 @@
 <script setup>
 defineProps({
-  imageUri: String,
-  width: Number,
-  height: Number,
-  shadow: Boolean,
-  title: String,
-  description: String,
-  calories: Number,
-  pfc: Number,
-  temperature: Number,
-  priceWithDiscount: Number,
-  originalPrice: Number,
-  fireIcon: Boolean,
-  leafIcon: Boolean,
-  wheatIcon: Boolean,
+  imageUri: {
+    type: String,
+    default: "../../../../assets/no-image-available.png",
+  },
+  width: {
+    type: Number,
+    default: 360,
+  },
+  height: {
+    type: Number,
+    default: 530,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  calories: {
+    type: Number,
+    required: true,
+  },
+  pfc: {
+    type: Number,
+    required: true,
+  },
+  temperature: {
+    type: Number,
+    required: true,
+  },
+  priceWithDiscount: {
+    type: Number,
+    required: true,
+  },
+  originalPrice: {
+    type: Number,
+    required: true,
+  },
+  fireIcon: {
+    type: Boolean,
+    default: false,
+  },
+  leafIcon: {
+    type: Boolean,
+    default: false,
+  },
+  wheatIcon: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const getImgUrl = (imageUri) => {
@@ -116,6 +154,7 @@ const getImgUrl = (imageUri) => {
   }
 
   &__image {
+    height: 100%;
     width: 100%;
   }
 
@@ -177,7 +216,7 @@ const getImgUrl = (imageUri) => {
     margin-bottom: 20px;
 
     &--discount-price {
-			font-size: 1.75rem;
+      font-size: 1.75rem;
       line-height: 25px;
       margin-right: 10px;
       color: #081f32;
@@ -195,6 +234,7 @@ const getImgUrl = (imageUri) => {
       text-align: center;
       background-color: globals.$buttonBackgroundColor;
       font-family: globals.$openSansFont;
+      transition: 0.2s;
       line-height: 25px;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -204,6 +244,10 @@ const getImgUrl = (imageUri) => {
       border-radius: 4px;
       color: #ffffff;
       cursor: pointer;
+    }
+
+    &--button:hover {
+      background-color: globals.$buttonHoverBackgroundColor;
     }
   }
 }
@@ -241,7 +285,7 @@ const getImgUrl = (imageUri) => {
       justify-content: flex-end;
       flex-grow: 1;
       margin-bottom: 10px;
-			margin-bottom: 0;
+      margin-bottom: 0;
 
       &--button {
         margin-top: 7px;

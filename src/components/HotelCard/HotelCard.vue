@@ -2,24 +2,58 @@
 import { reactive } from "vue";
 
 const props = defineProps({
-  imageUri: String,
-  width: Number,
-  height: Number,
-  title: String,
-  description: String,
-  stars: Number,
-  ranking: String,
-  originalPrice: Number,
-  discountPrice: Number,
-  availableRooms: Number,
-  stayDate: String,
-  wifiIcon: Boolean,
-  foodIcon: Boolean,
-  swimIcon: Boolean,
+  imageUri: {
+    type: String,
+    default: "../../../../assets/no-image-available.png",
+  },
+  width: {
+    type: Number,
+    default: 515,
+  },
+  height: {
+    type: Number,
+    default: 715,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  stars: {
+    type: Number,
+    default: 0,
+  },
+  ranking: {
+    type: String,
+    default: "###",
+  },
+  originalPrice: {
+    type: Number,
+    required: true,
+  },
+  discountPrice: {
+    type: Number,
+    required: true,
+  },
+  availableRooms: {
+    type: Number,
+    required: true,
+  },
+  stayDate: {
+    type: String,
+    required: true,
+  },
+  wifiIcon: { type: Boolean, default: false },
+  foodIcon: { type: Boolean, default: false },
+  swimIcon: { type: Boolean, default: false },
 });
 
 const state = reactive({
   isFavorite: false,
+  bookingRoom: false,
 });
 
 const iconsPath = "./src/components/HotelCard/assets/icons";
@@ -37,6 +71,14 @@ const getImgUrl = (imageUri) => {
 const setAsFavorite = () => {
   state.isFavorite = !state.isFavorite;
 };
+
+const initBookingRoom = () => {
+  state.bookingRoom = true;
+};
+
+const closeBookingArea = () => {
+  state.bookingRoom = false;
+};
 </script>
 
 <template>
@@ -44,78 +86,103 @@ const setAsFavorite = () => {
     :style="{ width: `${width}px`, height: `${height}px` }"
     class="hotel-card"
   >
-    <div class="hotel-card__image-container">
-      <div class="hotel-card__info-wrapper" @click="setAsFavorite">
-        <img
-          v-if="state.isFavorite"
-          :src="favoriteHotelIcon"
-          alt="Favorite icon"
-        />
-        <img v-else :src="noFavoriteHotelIcon" alt="Favorite icon" />
-      </div>
-      <img
-        :src="getImgUrl(imageUri)"
-        alt="hotel image"
-        class="hotel-card__image"
-      />
-    </div>
-    <div class="hotel-card__body-container">
-      <div class="hotel-card__title-wrapper">
-        <div class="hotel-card__title-wrapper--title">{{ title }}</div>
-        <div class="hotel-card__title-wrapper__icons-container">
-          <div v-if="swimIcon" class="icon-default">
-            <img src="./assets/icons/swim.svg" alt="Swim indicator" />
-          </div>
-          <div v-if="wifiIcon" class="icon-default">
-            <img src="./assets/icons/wifi.svg" alt="Wifi indicator" />
-          </div>
-          <div v-if="foodIcon" class="icon-default">
-            <img src="./assets/icons/food.svg" alt="Food indicator" />
-          </div>
+    <div v-show="!state.bookingRoom">
+      <div class="hotel-card__image-container">
+        <div class="hotel-card__info-wrapper" @click="setAsFavorite">
+          <img
+            v-if="state.isFavorite"
+            class="hotel-card__info-wrapper--fav-icon"
+            :src="favoriteHotelIcon"
+            alt="Favorite icon"
+          />
+          <img
+            v-else
+            class="hotel-card__info-wrapper--fav-icon"
+            :src="noFavoriteHotelIcon"
+            alt="Favorite icon"
+          />
         </div>
+        <img
+          :src="getImgUrl(imageUri)"
+          alt="hotel image"
+          class="hotel-card__image"
+        />
       </div>
-      <div class="hotel-card__infos-wrapper">
-        <div class="hotel-card__left-infos-wrapper">
-          <div class="flex-row">
-            <img
-              v-for="(star, index) in 5"
-              :key="index"
-              :src="`${
-                index < stars
-                  ? './src/components/HotelCard/assets/icons/filled-star.svg'
-                  : './src/components/HotelCard/assets/icons/star.svg'
-              }`"
-              alt="Stars indicator"
-            />
-            <div class="hotel-card__left-infos-wrapper--ranking">
-              {{ ranking }}
+      <div class="hotel-card__body-container">
+        <div class="hotel-card__title-wrapper">
+          <div class="hotel-card__title-wrapper--title">{{ title }}</div>
+          <div class="hotel-card__title-wrapper__icons-container">
+            <div v-if="swimIcon" class="icon-default">
+              <img src="./assets/icons/swim.svg" alt="Swim indicator" />
+            </div>
+            <div v-if="wifiIcon" class="icon-default">
+              <img src="./assets/icons/wifi.svg" alt="Wifi indicator" />
+            </div>
+            <div v-if="foodIcon" class="icon-default">
+              <img src="./assets/icons/food.svg" alt="Food indicator" />
             </div>
           </div>
-          <div class="hotel-card__left-infos-wrapper--secondary">
-            <div class="hotel-card--label">{{ stayDate }}</div>
-            <div class="hotel-card--label">{{ availableRooms }}</div>
+        </div>
+        <div class="hotel-card__infos-wrapper">
+          <div class="hotel-card__left-infos-wrapper">
+            <div class="flex-row">
+              <img
+                v-for="(star, index) in 5"
+                :key="index"
+                :src="`${
+                  index < stars
+                    ? './src/components/HotelCard/assets/icons/filled-star.svg'
+                    : './src/components/HotelCard/assets/icons/star.svg'
+                }`"
+                alt="Stars indicator"
+              />
+              <div class="hotel-card__left-infos-wrapper--ranking">
+                {{ ranking }}
+              </div>
+            </div>
+            <div class="hotel-card__left-infos-wrapper--secondary">
+              <div class="hotel-card--label">{{ stayDate }}</div>
+              <div class="hotel-card--label">{{ availableRooms }}</div>
+            </div>
+          </div>
+          <div class="hotel-card__right-infos-wrapper">
+            <div class="hotel-card__right-infos-wrapper--discount-price">
+              ${{ discountPrice }}<span class="fs-18">/night</span>
+            </div>
+            <div class="hotel-card__right-infos-wrapper--original-price">
+              <span class="line-through">${{ originalPrice }}</span>
+              <span class="fs-14">/night</span>
+            </div>
           </div>
         </div>
-        <div class="hotel-card__right-infos-wrapper">
-          <div class="hotel-card__right-infos-wrapper--discount-price">
-            ${{ discountPrice }}<span class="fs-18">/night</span>
+        <div class="hotel-card__description-wrapper body-text">
+          {{ description }}
+        </div>
+        <div class="hotel-card__booking-wrapper">
+          <div class="hotel-card__booking-wrapper--saving-text">
+            You're saving <strong>${{ calcSavedValue() }}</strong>
           </div>
-          <div class="hotel-card__right-infos-wrapper--original-price">
-            <span class="line-through">${{ originalPrice }}</span>
-            <span class="fs-14">/night</span>
-          </div>
+          <button
+            class="hotel-card__booking-wrapper--booking-button"
+            @click="initBookingRoom"
+          >
+            select rooms
+          </button>
         </div>
       </div>
-      <div class="hotel-card__description-wrapper body-text">
-        {{ description }}
-      </div>
-      <div class="hotel-card__booking-wrapper">
-        <div class="hotel-card__booking-wrapper--saving-text">
-          You're saving <strong>${{ calcSavedValue() }}</strong>
+    </div>
+    <div v-show="state.bookingRoom">
+      <div class="hotel-card__select-room-container">
+        <div class="hotel-card__select-room-container--close-icon">
+          <img
+            src="../../assets/close-icon.svg"
+            alt="Close icon"
+            @click="closeBookingArea"
+          />
         </div>
-        <button class="hotel-card__booking-wrapper--booking-button">
-          select rooms
-        </button>
+        <div class="hotel-card__select-room-container--generic-text">
+          Any generic information about room selection
+        </div>
       </div>
     </div>
   </div>
@@ -123,6 +190,7 @@ const setAsFavorite = () => {
 
 <style scoped lang="scss">
 @use "../../globals/_globals.scss";
+
 .hotel-card {
   margin: 20px;
   background-color: #ffffff;
@@ -131,6 +199,7 @@ const setAsFavorite = () => {
   display: flex;
   flex-direction: column;
   min-width: 430px;
+  position: relative;
 
   &--label {
     display: flex;
@@ -164,6 +233,14 @@ const setAsFavorite = () => {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    &--fav-icon {
+      transition: 0.2s;
+    }
+
+    &--fav-icon:hover {
+      transform: scale(1.2);
+    }
   }
 
   &__info-wrapper img {
@@ -294,6 +371,7 @@ const setAsFavorite = () => {
       text-align: center;
       border-radius: 8px;
       border: none;
+      transition: 0.2s;
       height: 80px;
       background-color: #2ecc71;
       font-weight: 700;
@@ -304,6 +382,30 @@ const setAsFavorite = () => {
       color: #ffffff;
       text-transform: uppercase;
       cursor: pointer;
+    }
+
+    &--booking-button:hover {
+      background-color: globals.$buttonHoverBackgroundColor;
+    }
+  }
+
+  &__select-room-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    &--close-icon {
+      text-align: right;
+      cursor: pointer;
+    }
+
+    &--generic-text {
+      display: flex;
+      flex-grow: 1;
+      font-family: globals.$openSansFont;
+      font-size: 1.85rem;
+      text-align: center;
+      margin-top: 100px;
     }
   }
 }

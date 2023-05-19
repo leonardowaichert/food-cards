@@ -181,7 +181,10 @@ const closeBookingArea = () => {
           />
         </div>
         <div class="hotel-card__select-room-container--generic-text">
-          Any generic information about room selection
+          <span
+            >Any generic information about room selection in
+            <strong>{{ title }}</strong></span
+          >
         </div>
       </div>
     </div>

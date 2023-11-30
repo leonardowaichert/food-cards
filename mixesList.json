@@ -1,0 +1,188 @@
+{
+  "1": {
+    "id": 1,
+    "label": "Beach day",
+    "category": {
+      "id": 3,
+      "label": "Rain"
+    },
+    "isSelected": false,
+    "isVisible": true,
+    "isPlaying": false,
+    "isActive": false,
+    "isPremium": true,
+    "isFavorite": true,
+    "imageSource": "https://raw.githubusercontent.com/leonardowaichert/food-hotel-cards/main/chicken.png",
+    "soundsList": [
+      {
+        "id": 1,
+        "volume": 0.7
+      },
+      {
+        "id": 5,
+        "volume": 0.9
+      },
+      {
+        "id": 3,
+        "volume": 1
+      }
+    ]
+  },
+  "2": {
+    "id": 2,
+    "label": "Light rain",
+    "category": {
+      "id": 4,
+      "label": "Nature"
+    },
+    "isSelected": false,
+    "isVisible": true,
+    "isPlaying": false,
+    "isActive": false,
+    "isPremium": false,
+    "isFavorite": true,
+    "imageSource": "https://raw.githubusercontent.com/leonardowaichert/food-hotel-cards/main/chicken.png",
+    "soundsList": [
+      {
+        "id": 2,
+        "volume": 0.7
+      },
+      {
+        "id": 7,
+        "volume": 0.9
+      }
+    ]
+  },
+  "3": {
+    "id": 3,
+    "label": "Rain in forest",
+    "category": {
+      "id": 5,
+      "label": "City"
+    },
+    "isSelected": false,
+    "isVisible": true,
+    "isPlaying": false,
+    "isActive": false,
+    "isPremium": false,
+    "isFavorite": false,
+    "imageSource": "https://raw.githubusercontent.com/leonardowaichert/food-hotel-cards/main/chicken.png",
+    "soundsList": [
+      {
+        "id": 2,
+        "volume": 0.7
+      },
+      {
+        "id": 5,
+        "volume": 0.9
+      },
+      {
+        "id": 3,
+        "volume": 1
+      }
+    ]
+  },
+  "4": {
+    "id": 4,
+    "label": "Relaxation",
+    "category": {
+      "id": 3,
+      "label": "Rain"
+    },
+    "isSelected": false,
+    "isVisible": true,
+    "isPlaying": false,
+    "isActive": false,
+    "isPremium": true,
+    "isFavorite": true,
+    "imageSource": "https://raw.githubusercontent.com/leonardowaichert/food-hotel-cards/main/chicken.png",
+    "soundsList": [
+      {
+        "id": 2,
+        "volume": 0.7
+      },
+      {
+        "id": 5,
+        "volume": 0.9
+      },
+      {
+        "id": 3,
+        "volume": 1
+      }
+    ]
+  },
+  "5": {
+    "id": 5,
+    "label": "Peaceful night",
+    "category": {
+      "id": 3,
+      "label": "Rain"
+    },
+    "isSelected": false,
+    "isVisible": true,
+    "isPlaying": false,
+    "isActive": false,
+    "isPremium": true,
+    "isFavorite": false,
+    "imageSource": "https://raw.githubusercontent.com/leonardowaichert/food-hotel-cards/main/chicken.png",
+    "soundsList": [
+      {
+        "id": 2,
+        "volume": 0.7
+      },
+      {
+        "id": 3,
+        "volume": 0.9
+      }
+    ]
+  },
+  "6": {
+    "id": 6,
+    "label": "City life",
+    "category": {
+      "id": 5,
+      "label": "City"
+    },
+    "isSelected": false,
+    "isVisible": true,
+    "isPlaying": false,
+    "isActive": false,
+    "isPremium": false,
+    "isFavorite": true,
+    "imageSource": "https://raw.githubusercontent.com/leonardowaichert/food-hotel-cards/main/chicken.png",
+    "soundsList": [
+      {
+        "id": 2,
+        "volume": 0.7
+      },
+      {
+        "id": 3,
+        "volume": 0.9
+      }
+    ]
+  },
+  "7": {
+    "id": 7,
+    "label": "Campfire with friends",
+    "category": {
+      "id": 8,
+      "label": "Sleep"
+    },
+    "isSelected": false,
+    "isVisible": true,
+    "isPlaying": false,
+    "isActive": false,
+    "isFavorite": true,
+    "imageSource": "https://raw.githubusercontent.com/leonardowaichert/food-hotel-cards/main/chicken.png",
+    "soundsList": [
+      {
+        "id": 2,
+        "volume": 0.7
+      },
+      {
+        "id": 3,
+        "volume": 0.9
+      }
+    ]
+  }
+}
